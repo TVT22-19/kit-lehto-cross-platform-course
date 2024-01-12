@@ -1,6 +1,6 @@
 import {getUserProjects} from "./fStatsApi";
-import {Project} from "../types";
 import {useQuery} from "react-query";
+import {Project} from "./types";
 
 export const useUserProjects = (userId: number) => useQuery<Project[], Error>({
     queryKey: [`userProjects_${userId}`],
