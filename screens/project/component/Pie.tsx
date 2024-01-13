@@ -22,7 +22,7 @@ export default function Pie(props: { title: string, width: number, height: numbe
     })).sort((a, b) => a.count - b.count).reverse()
 
     return (
-        <Card style={[Styles.pieCardContainer, {padding: 8}]}>
+        <Card style={[Styles.pieCardContainer]}>
             <Card.Title title={props.title}/>
             <Card.Content>
                 <PieChart
