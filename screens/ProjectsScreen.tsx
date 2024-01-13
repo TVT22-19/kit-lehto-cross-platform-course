@@ -16,19 +16,15 @@ export default function ProjectsScreen({navigation}: NativeStackScreenProps<Root
 
     const {data} = useUserProjects(user.id || 1)
 
-
     return (
         <View style={Styles.container}>
-            <Text style={{textAlign: "center", fontSize: 18, fontWeight: "bold"}}>Project owned
-                by: {user.username}</Text>
-            <FlatList data={data || []}
-                      renderItem={({item}) => (
-                          <Button style={{marginBottom: 8}} mode="contained" onPress={() => {
-                              navigation.navigate("Project", {
-                                  id: item.id
-                              })
-                          }}>{item.name}</Button>
-                      )}/>
+            {(data || []).length > 0 ? <FlatList data={data} renderItem={({item}) => (
+                <Button style={Styles.buttonOuterMargin} mode="contained" onPress={() => {
+                    navigation.navigate("Project", {
+                        id: item.id
+                    });
+                }}>{item.name}</Button>
+            )}/> : <Text style={Styles.noProjectsText}>You don't have any project</Text>}
         </View>
     )
 }
