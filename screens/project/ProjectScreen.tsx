@@ -1,10 +1,11 @@
-import {Dimensions, Image, ScrollView, View} from "react-native";
+import {Dimensions, ScrollView, View} from "react-native";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "../../types";
 import {usePieMetric} from "../../service/metrics";
 import {Styles} from "../../styles";
 import Pie from "./component/Pie";
 import {DataValue} from "../../service/types";
+import {Card} from "react-native-paper";
 
 export default function ProjectScreen({route}: NativeStackScreenProps<RootStackParamList, "Project">) {
 
@@ -18,9 +19,11 @@ export default function ProjectScreen({route}: NativeStackScreenProps<RootStackP
     return (
         <View style={Styles.container}>
             <ScrollView>
-                <Image source={{
-                    uri: `https://img.fstats.dev/timeline/${id}?theme=light&format=png&mode=week&width=${width}&height=${height}`
-                }} width={width} height={height}/>
+                <Card>
+                    <Card.Cover source={{
+                        uri: `https://img.fstats.dev/timeline/${id}?theme=light&format=png&mode=week&width=${width}&height=${height - 16}`
+                    }} width={width} height={height}/>
+                </Card>
                 {data && <>
                     <Pie data={data.metric_pie.minecraft_version} title="Minecraft Version" width={width}
                          height={height}/>
