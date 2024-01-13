@@ -6,7 +6,7 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {RootStackParamList} from "./types";
 import {useAuth} from "./hooks/useAuth";
 import {View} from "react-native";
-import ProjectScreen from "./screens/ProjectScreen";
+import ProjectScreen from "./screens/project/ProjectScreen";
 
 export function Navigation() {
 

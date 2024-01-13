@@ -1,6 +1,6 @@
 import {Text} from "react-native-paper";
 import {PieChart} from "react-native-chart-kit";
-import {DataValue} from "../service/types";
+import {DataValue} from "../../../service/types";
 import {View} from "react-native";
 
 export default function Pie(props: { title: string, width: number, height: number, data: DataValue }) {

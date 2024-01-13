@@ -1,10 +1,10 @@
 import {Dimensions, Image, ScrollView, View} from "react-native";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
-import {RootStackParamList} from "../types";
-import {Styles} from "../styles";
-import Pie from "../component/Pie";
-import {usePieMetric} from "../service/metrics";
-import {DataValue} from "../service/types";
+import {RootStackParamList} from "../../types";
+import {usePieMetric} from "../../service/metrics";
+import {Styles} from "../../styles";
+import Pie from "./component/Pie";
+import {DataValue} from "../../service/types";
 
 export default function ProjectScreen({route}: NativeStackScreenProps<RootStackParamList, "Project">) {
 
