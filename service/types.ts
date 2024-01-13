@@ -18,9 +18,18 @@ export interface AuthToken {
     token: string;
 }
 
-export interface LineMetric {
+export interface PieMetric {
     project: Project;
-    metric_line: DataValue;
+    metric_pie: MinecraftData;
+}
+
+export interface MinecraftData {
+    minecraft_version: DataValue;
+    online_mode: DataValue;
+    mod_version: DataValue;
+    os: DataValue;
+    location: DataValue;
+    fabric_api_version: DataValue;
 }
 
 export interface DataValue {

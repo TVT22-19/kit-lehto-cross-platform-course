@@ -1,8 +1,8 @@
 import {useQuery} from "react-query";
-import {LineMetric} from "./types";
-import {getLineMetric} from "./fStatsApi";
+import {PieMetric} from "./types";
+import {getPieMetric} from "./fStatsApi";
 
-export const useLineMetric = (projectId: number) => useQuery<LineMetric, Error>({
-    queryKey: [`metricLine_${projectId}`],
-    queryFn: () => getLineMetric(projectId).then(value => value)
+export const usePieMetric = (projectId: number) => useQuery<PieMetric, Error>({
+    queryKey: [`metricPie_${projectId}`],
+    queryFn: () => getPieMetric(projectId)
 })

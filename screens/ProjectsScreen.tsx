@@ -10,11 +10,12 @@ import base64 from 'react-native-base64'
 
 export default function ProjectsScreen({navigation}: NativeStackScreenProps<RootStackParamList>) {
 
-    const {data} = useUserProjects(1)
-
     const {token} = useAuth()!!
 
     const user = JSON.parse(base64.decode(token.split(".")[1])) as User
+
+    const {data} = useUserProjects(user.id || 1)
+
 
     return (
         <View style={Styles.container}>

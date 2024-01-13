@@ -1,4 +1,4 @@
-import {ApiMessage, AuthToken, LineMetric, Project, User} from "./types";
+import {ApiMessage, AuthToken, PieMetric, Project, User} from "./types";
 
 const hostUrl = "https://api.fstats.dev/v2"
 
@@ -22,10 +22,10 @@ export const login = async (user: User): Promise<AuthToken> => {
     return await response.json() as AuthToken
 }
 
-export const getLineMetric = async (projectId: number): Promise<LineMetric> => {
-    const response = await fetch(`${hostUrl}/metrics/${projectId}/line`)
+export const getPieMetric = async (projectId: number): Promise<PieMetric> => {
+    const response = await fetch(`${hostUrl}/metrics/${projectId}/pie`)
 
     if (response.status !== 200) throw new Error((await response.json() as ApiMessage).message)
 
-    return await response.json() as LineMetric
+    return await response.json() as PieMetric
 }

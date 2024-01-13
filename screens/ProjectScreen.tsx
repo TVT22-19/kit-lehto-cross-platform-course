@@ -1,53 +1,56 @@
-import {Dimensions, View} from "react-native";
-import {Text} from "react-native-paper";
+import {Dimensions, Image, ScrollView, View} from "react-native";
 import {NativeStackScreenProps} from "@react-navigation/native-stack";
 import {RootStackParamList} from "../types";
 import {Styles} from "../styles";
-import {LineChart} from "react-native-chart-kit";
-import {useLineMetric} from "../service/metrics";
+import Pie from "../component/Pie";
+import {usePieMetric} from "../service/metrics";
+import {DataValue} from "../service/types";
 
 export default function ProjectScreen({route}: NativeStackScreenProps<RootStackParamList, "Project">) {
 
     const {id} = route.params
 
-    const {data} = useLineMetric(id!)
+    const width = Number((Dimensions.get("window").width - 32).toFixed())
+    const height = 220
 
-    const labels: string[] = Object.keys(data?.metric_line || [])
-
-    const datas: number[] = Object.values(data?.metric_line || []);
+    const {data} = usePieMetric(id!)
 
     return (
         <View style={Styles.container}>
-            <Text>Project: {id}</Text>
-            {(datas.length > 0 && labels.length > 0) && <LineChart
-                chartConfig={{
-                    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                    backgroundColor: "#e26a00",
-                    backgroundGradientFrom: "#fb8c00",
-                    backgroundGradientTo: "#ffa726",
-                    decimalPlaces: 0,
-                }}
-                withDots={false}
-                withInnerLines={false}
-                withOuterLines={false}
-                verticalLabelRotation={110}
-                fromZero
-                bezier
-                segments={5}
-                style={{
-                    borderRadius: 16
-                }}
-                data={{
-                    labels: labels.slice(labels.length - 51, labels.length - 1),
-                    datasets: [
-                        {
-                            data: datas.slice(datas.length - 51, datas.length - 1)
-                        }
-                    ]
-                }}
-                width={Dimensions.get("window").width - 32}
-                height={220}
-            />}
+            <ScrollView>
+                <Image source={{
+                    uri: `https://img.fstats.dev/timeline/${id}?theme=light&format=png&mode=week&width=${width}&height=${height}`
+                }} width={width} height={height}/>
+                {data && <>
+                    <Pie data={data.metric_pie.minecraft_version} title="Minecraft Version" width={width}
+                         height={height}/>
+                    <Pie data={formatOnlineMode(data.metric_pie.online_mode)} title="Online Mode" width={width}
+                         height={height}/>
+                    <Pie data={data.metric_pie.mod_version} title="Mod Version" width={width} height={height}/>
+                    <Pie data={formatOperationSystem(data.metric_pie.os)} title="Operation System" width={width}
+                         height={height}/>
+                    <Pie data={data.metric_pie.location} title="Location" width={width} height={height}/>
+                    <Pie data={data.metric_pie.fabric_api_version} title="Fabric API" width={width} height={height}/>
+                </>}
+            </ScrollView>
         </View>
     )
 }
+
+const formatOnlineMode = (data: DataValue) => (Object.fromEntries(
+    Object.entries(data).map(([value, count]) => {
+        if (value === "true") value = "Online";
+        if (value === "false") value = "Offline";
+        return [value, count];
+    })
+) as DataValue);
+
+const formatOperationSystem = (data: DataValue) => (Object.fromEntries(
+    Object.entries(data).map(([value, count]) => {
+        if (value === 'l') value = "Linux"
+        if (value === 'm') value = "MacOS"
+        if (value === 'w') value = "Windows"
+        if (value === 'o') value = "Other"
+        return [value, count];
+    })
+) as DataValue);
