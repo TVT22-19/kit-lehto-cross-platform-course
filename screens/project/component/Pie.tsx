@@ -1,7 +1,7 @@
-import {Text} from "react-native-paper";
+import {Card} from "react-native-paper";
 import {PieChart} from "react-native-chart-kit";
 import {DataValue} from "../../../service/types";
-import {View} from "react-native";
+import {Styles} from "../../../styles";
 
 export default function Pie(props: { title: string, width: number, height: number, data: DataValue }) {
 
@@ -22,18 +22,20 @@ export default function Pie(props: { title: string, width: number, height: numbe
     })).sort((a, b) => a.count - b.count).reverse()
 
     return (
-        <View style={{backgroundColor: "#fff", marginTop: 16}}>
-            <Text style={{fontSize: 24, textAlign: "center", paddingTop: 16}}>{props.title}</Text>
-            <PieChart
-                data={mappedData}
-                width={props.width}
-                height={props.height}
-                chartConfig={{
-                    color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                }}
-                accessor="count"
-                backgroundColor="#fff"
-                paddingLeft="0"/>
-        </View>
+        <Card style={[Styles.pieCardContainer, {padding: 8}]}>
+            <Card.Title title={props.title}/>
+            <Card.Content>
+                <PieChart
+                    data={mappedData}
+                    width={props.width}
+                    height={props.height}
+                    chartConfig={{
+                        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                    }}
+                    accessor="count"
+                    backgroundColor="#fff"
+                    paddingLeft="0"/>
+            </Card.Content>
+        </Card>
     )
 }

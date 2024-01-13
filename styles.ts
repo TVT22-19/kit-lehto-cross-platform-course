@@ -12,5 +12,9 @@ export const Styles = StyleSheet.create({
     noProjectsText: {
         textAlign: "center",
         fontSize: 18
+    },
+    pieCardContainer: {
+        backgroundColor: "#fff",
+        marginTop: 16
     }
 })
