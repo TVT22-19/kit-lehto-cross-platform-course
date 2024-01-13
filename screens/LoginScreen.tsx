@@ -17,28 +17,16 @@ export default function LoginScreen() {
     const loginMutation = useLogin()
 
     if (loginMutation.status === "error" && user) {
-        console.log(`Error: ${loginMutation.error.message}`)
         setUser(undefined)
     }
 
     if (loginMutation.status === "success" && user) {
-        console.log(`Token: ${loginMutation.data.token}`)
         saveToken(loginMutation.data.token)
         setUser(undefined)
     }
 
     const onLogin = () => {
-        if (username.trim().length < 3) {
-            console.log(`Username: ${username}`)
-            return
-        }
-
-        if (password.trim().length < 3) {
-            console.log(`Password: ${password}`)
-            return
-        }
-
-        console.log("Defined")
+        if (username.trim().length < 3 || password.trim().length < 3) return
 
         setUser({username, password})
 
