@@ -1,9 +1,9 @@
 import {Card} from "react-native-paper";
 import {PieChart} from "react-native-chart-kit";
-import {DataValue} from "../../../service/types";
 import {Styles} from "../../../styles";
+import {PieProps} from "./types";
 
-export default function Pie(props: { title: string, width: number, height: number, data: DataValue }) {
+export default function Pie(props: PieProps) {
 
     const colors = [
         "#e74c3c",
