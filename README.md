@@ -55,4 +55,6 @@ npm run start
 
 ## Video preview
 
-<iframe width="800" height="600" src="https://www.youtube.com/embed/ocWqfHUkuEI" title="fStats Chart View" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+https://github.com/TVT22-19/kit-lehto-cross-platform-course/assets/33298273/437de47d-bada-4737-9b74-86a9f1e31962
+
