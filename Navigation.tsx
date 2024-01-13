@@ -18,6 +18,7 @@ export function Navigation() {
         <NavigationContainer>
             <Stack.Navigator screenOptions={{
                 header: (props) => <Appbar.Header mode="center-aligned">
+                    {props.back && <Appbar.BackAction onPress={() => props.navigation.goBack()}/>}
                     <Appbar.Content title={props.route.name}/>
                     {isAuthorized && <Appbar.Action icon="logout" onPress={() => clearToken()}/>}
                 </Appbar.Header>
